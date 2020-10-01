@@ -1,9 +1,13 @@
+const { render } = require('ejs')
 const express = require('express')
 const app = express()
 
+app.set('view engine', 'ejs')
+
 app.get('/', (req, res) => {
-    console.log(new Date())
-    res.send('Hello Wolrd')
+    res.render('home', {
+        date: new Date()
+    })
 })
 
 app.listen(3000, err => {

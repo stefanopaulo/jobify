@@ -1,12 +1,14 @@
 const { render } = require('ejs')
 const express = require('express')
 const app = express()
-
+const bodyParser = require('body-parser')
 const sqlite = require('sqlite')
+
 const dbConnection = sqlite.open('database.sqlite', { Promise })
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
+app.use(bodyParser.urlencoded({ extended: false }))
 
 app.get('/', async (req, res) => {
     const db = await dbConnection
@@ -27,9 +29,35 @@ app.get('/', async (req, res) => {
 app.get('/vaga/:id', async (req, res) => {
     const db = await dbConnection
     const vacancy = await db.get('select * from vacancies where id = ' + req.params.id)
+    
     res.render('vaga', {
         vacancy
     })
+})
+
+app.get('/admin', (req, res) => {
+    res.render('admin/home')
+})
+
+app.get('/admin/vagas', async (req, res) => {
+    const db = await dbConnection
+    const vacancies = await db.all('select * from vacancies;')
+    res.render('admin/vagas', { vacancies })
+})
+
+app.get('/admin/vagas/delete/:id', async (req, res) => {
+    const db = await dbConnection
+    await db.run('delete from vacancies where id = ' + req.params.id)
+
+    res.redirect('/admin/vagas')
+})
+
+app.get('/admin/vagas/nova', async (req, res) => {
+    res.render('admin/nova-vaga')
+})
+
+app.post('/admin/vagas/nova', async (req, res) => {
+    res.send(req.body)
 })
 
 const init = async () => {

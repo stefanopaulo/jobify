@@ -38,3 +38,25 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+label {
+    display: block;
+    margin: 20px 0 4px 0;
+}
+
+input, select {
+    display: block;
+    padding: 8px;
+    width: 540px;
+}
+
+textarea {
+    padding: 8px;
+    width: 540px;
+    height: 320px;
+}
+
+button {
+    padding: 12px;
+    cursor: pointer;
+}

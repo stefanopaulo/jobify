@@ -2,17 +2,14 @@
 <%- include('header') %>
 
 <h2>Open roles:</h2>
+<% categories.forEach(category => { %>
 <div>
-    <h3>Engineering team</h3>
+    <h3><%- category.category %></h3>
     <ul>
         <li><a href="vaga">Fullstack Developer (Remote)</a></li>
     </ul>
 </div>
-<div>
-    <h3>Marketing team</h3>
-    <ul>
-        <li>Digital Marketing (San Francisco)</li>
-    </ul>
-</div>
+<% }) %>
+
 <!-- footer -->
 <%- include('footer') %>

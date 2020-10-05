@@ -6,7 +6,9 @@
 <div>
     <h3><%- category.category %></h3>
     <ul>
-        <li><a href="vaga">Fullstack Developer (Remote)</a></li>
+        <% category.vacancies.forEach(vacancy =>{ %>
+            <li><a href="vaga/<%- vacancy.id %>"><%- vacancy.title %></a></li>
+        <% }) %>
     </ul>
 </div>
 <% }) %>

@@ -3,16 +3,18 @@
 
     <h2>
         Admin Categorias:
-        <a href="/admin/categorias/nova">Nova categoria</a>
+        <a href="/admin/categorias/nova" class="admin-links">Nova categoria</a>
     </h2>
     <div>
         <ul>
             <% categories.forEach(category => { %>
                 <li>
-                    <%- category.category %> | 
-                    <a href="/admin/categorias/delete/<%- category.id %>">Excluir</a>
-
-                    <a href="/admin/categorias/editar/<%- category.id %>">Editar</a>
+                    <div class="div-admin">
+                        <%- category.category %> | 
+                        <a href="/admin/categorias/delete/<%- category.id %>" class="admin red">Excluir</a>
+    
+                        <a href="/admin/categorias/editar/<%- category.id %>" class="admin green">Editar</a>
+                    </div>
                 </li>
             <% }) %>
         </ul>

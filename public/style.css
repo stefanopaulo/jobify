@@ -19,6 +19,26 @@ li {
     margin-left: 0;
 }
 
+a.general-links {
+    display: inline-block;
+    color: #000;
+    text-decoration: none;
+    padding-bottom: 15px;
+}
+
+a.admin-links {
+    display: inline-block;
+    color: #000;
+    text-decoration: none;
+    padding: 4px;
+    border: 1px solid #000;
+    font-size: 16px;
+}
+
+a.general-links:hover, a.admin-links:hover {
+    text-decoration: underline;
+}
+
 h2 {
     font-size: 24px;
     background-color: #c4c4c4;
@@ -28,15 +48,6 @@ h2 {
 
 h3 {
     font-size: 24px;
-}
-
-a {
-    color: #000;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
 }
 
 label {
@@ -59,4 +70,26 @@ textarea {
 button {
     padding: 12px;
     cursor: pointer;
+}
+
+a.admin {
+    padding: 8px;
+    margin: 10px;
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 1px 1px 5px 1px rgba(0,0,0,0.75);
+}
+
+a.red {
+    background-color: #f44336;
+    border: 1px solid #f44336;
+}
+
+a.green {
+    background-color: #4caf50;
+    border: 1px solid #4caf50;
+}
+
+.div-admin {
+    margin-bottom: 40px;
 }

@@ -7,7 +7,7 @@
     <h3><%- category.category %></h3>
     <ul>
         <% category.vacancies.forEach(vacancy =>{ %>
-            <li><a href="vaga/<%- vacancy.id %>"><%- vacancy.title %></a></li>
+            <li><a href="vaga/<%- vacancy.id %>" class="general-links"><%- vacancy.title %></a></li>
         <% }) %>
     </ul>
 </div>

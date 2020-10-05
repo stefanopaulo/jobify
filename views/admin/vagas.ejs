@@ -3,16 +3,17 @@
 
     <h2>
         Admin Vagas:
-        <a href="/admin/vagas/nova">Nova vaga</a>
+        <a href="/admin/vagas/nova" class="admin-links">Nova vaga</a>
     </h2>
     <div>
         <ul>
             <% vacancies.forEach(vacancy => { %>
                 <li>
-                    <%- vacancy.title %> | 
-                    <a href="/admin/vagas/delete/<%- vacancy.id %>">Excluir</a>
+                    <div class="div-admin"><%- vacancy.title %> | 
+                        <a href="/admin/vagas/delete/<%- vacancy.id %>" class="admin red">Excluir</a>
 
-                    <a href="/admin/vagas/editar/<%- vacancy.id %>">Editar</a>
+                        <a href="/admin/vagas/editar/<%- vacancy.id %>" class="admin green">Editar</a>
+                    </div>
                 </li>
             <% }) %>
         </ul>

@@ -94,6 +94,49 @@ app.post('/admin/vagas/editar/:id', async (req, res) => {
     res.redirect('/admin/vagas')
 })
 
+app.get('/admin/categorias', async (req, res) => {
+    const db = await  dbConnection
+    const categories = await db.all('select * from categories')
+    res.render('admin/categorias', { categories })
+})
+
+app.get('/admin/categorias/nova', async (req, res) => {
+    const db = await dbConnection
+    const categories = await db.all('select * from categories')
+    res.render('admin/nova-categoria', { categories })
+})
+
+app.post('/admin/categorias/nova', async (req, res) => {
+    const { category } = req.body
+    const db = await dbConnection
+    await db.run(`insert into categories(category) values('${category}')`)
+    res.redirect('/admin/categorias')
+})
+
+app.get('/admin/categorias/delete/:id', async (req, res) => {
+    const db = await dbConnection
+    await db.run('delete from categories where id = ' + req.params.id)
+
+    res.redirect('/admin/categorias')
+})
+
+app.get('/admin/categorias/editar/:id', async (req, res) => {
+    const { id } = req.params
+    const db = await dbConnection
+    const category = await db.get('select * from categories where id = ' + id)
+
+    res.render('admin/editar-categoria', { category })
+})
+
+app.post('/admin/categorias/editar/:id', async (req, res) => {
+    const { category } = req.body
+    const { id } = req.params
+    const db = await dbConnection
+    await db.run(`update categories set category = '${category}' where id = ${id}`)
+
+    res.redirect('/admin/categorias')
+})
+
 const init = async () => {
     const db = await dbConnection
     await db.run('create table if not exists categories(id INTEGER PRIMARY KEY, category TEXT)')

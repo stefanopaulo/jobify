@@ -14,7 +14,7 @@ app.use('/admin', (req, res, next) => {
     if (req.hostname === 'localhost') {
         next()
     } else {
-        console.log('Not allowed')
+        res.send('Not allowed')
     }
 })
 

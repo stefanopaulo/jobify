@@ -2,21 +2,21 @@
 <%- include('header') %>
 
     <h2>
-        Nova vaga:
+        Editar vaga:
         <a href="/admin/vagas">Vagas</a>
     </h2>
     <div>
         <form method="POST">
             <label>Titulo:</label>
-            <input type="text" name="title">
+            <input type="text" name="title" value="<%= vacancy.title %>">
             <br>
             <label>Descrição:</label>
-            <textarea name="description"></textarea>
+            <textarea name="description"><%= vacancy.description %></textarea>
             <br>
             <label>Categoria:</label>
             <select name="category">
                 <% categories.forEach(category => { %>
-                    <option value="<%= category.id %>"><%= category.category %></option>
+                    <option value="<%= category.id %>" <% if(category.id == vacancy.category) {%> selected <%} %>><%= category.category %></option>
                 <% }) %>
             </select>
             <br>

@@ -53,11 +53,32 @@ app.get('/admin/vagas/delete/:id', async (req, res) => {
 })
 
 app.get('/admin/vagas/nova', async (req, res) => {
-    res.render('admin/nova-vaga')
+    const db = await dbConnection
+    const categories = await db.all('select * from categories')
+    res.render('admin/nova-vaga', { categories })
 })
 
 app.post('/admin/vagas/nova', async (req, res) => {
-    res.send(req.body)
+    const { title, description, category } = req.body
+    const db = await dbConnection
+    await db.run(`insert into vacancies(category, title, description) values(${category}, '${title}', '${description}')`)
+    res.redirect('/admin/vagas')
+})
+
+app.get('/admin/vagas/editar/:id', async (req, res) => {
+    const db = await dbConnection
+    const categories = await db.all('select * from categories')
+    const vacancy = await db.get('select * from vacancies where id = ' + req.params.id)
+    res.render('admin/editar-vaga', { categories, vacancy })
+})
+
+app.post('/admin/vagas/editar/:id', async (req, res) => {
+    const { title, description, category } = req.body
+    const { id } = req.params
+    const db = await dbConnection
+    await db.run(`update vacancies set category = ${category}, title = '${title}', description = '${description}' where id = ${id}`)
+
+    res.redirect('/admin/vagas')
 })
 
 const init = async () => {

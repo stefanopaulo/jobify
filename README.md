@@ -6,4 +6,4 @@ Essa aplicação foi desenvolvida durante o fullstack lab, um treinamento intesi
 - ejs
 - css
 
-O [Jobify](https://jobify-fawn.vercel.app) é uma aplicação de cadastro de emprego.
+O [Jobify](https://jobify-fawn.vercel.app) é uma aplicação de cadastro de vagas de emprego. Além da nova vaga é possível cadastrar as áres de cada vaga.
